@@ -5,6 +5,9 @@ import PageNav from "../../components/PageNav.jsx";
 import { getData } from "../../utils/projects";
 import Footer from "../../components/Footer.astro";
 const data = getData();
+import { db, TablaCrm } from "astro:db";
+
+const tablaCrm = await db.select().from(TablaCrm);
 ---
 
 <Layout title="CRM  | Jaime Villanueva">
@@ -19,9 +22,15 @@ const data = getData();
             <p class="text-gray-400 text-lg py-4 text-center sm:text-start">
                 Esto es un borrador del CRM de ESTUDIO LUCMAR.
             </p>
-            <div class="grid grid-cols-1 items-center w-full gap-4 mt-24">
-                {}
-            </div>
+            {
+                tablaCrm.map(({ calle, vendedor, noticias }) => (
+                    <article class="text-white">
+                        <p>Calle: {calle}</p>
+                        <p>Vendedor: {vendedor}</p>
+                        <p>Noticias: {noticias}</p>
+                    </article>
+                ))
+            }
         </section>
     </main>
     <Footer />

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.jaimedigitalstudio.com/sitemap-0.xml
+Sitemap: http://www.www.jaimedigitalstudio.com/sitemap-index.xml

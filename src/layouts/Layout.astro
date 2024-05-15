@@ -1,0 +1,126 @@
+---
+import "@fontsource-variable/space-grotesk";
+import "@fontsource-variable/manrope";
+import "@fontsource/poppins/100.css";
+import "@fontsource/poppins/200.css";
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import "@fontsource/poppins/800.css";
+import "@fontsource/poppins/900.css";
+
+import { SEO } from "astro-seo";
+const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin).toString();
+const resolvedImageWithDomain = new URL(
+  "/image.jpeg",
+  Astro.url.origin
+).toString();
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+import { ViewTransitions } from "astro:transitions";
+import preload from "astro-preload";
+import Glow from "../components/Glow";
+const makeTitle = title ? title : "Jaime Digital Studio";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content= "Jaime Villanueva Alcon - Desarrollador Web Full Stack. Descubre mi portafolio que muestra mi experiencia en Astro, React.js y Tailwind CSS. Especializado en código limpio, diseño responsive y experiencias centradas en el usuario. Con un sólido dominio de JavaScript, HTML, CSS y Node.js, cuento con un historial probado en la entrega de soluciones de software de alta calidad. Conéctate conmigo y discutamos cómo puedo elevar tus proyectos de desarrollo web."
+    />
+    <meta
+      name="keywords"
+      content="Jaime Villanueva Alcon, Desarrollador Web Full Stack. Descubre mi portafolio que muestra mi experiencia en Astro, React.js y Tailwind CSS. Especializado en código limpio, diseño responsive y experiencias centradas en el usuario. Con un sólido dominio de JavaScript, HTML, CSS y Node.js, cuento con un historial probado en la entrega de soluciones de software de alta calidad. Conéctate conmigo y discutamos cómo puedo elevar tus proyectos de desarrollo web."
+    />
+    <meta name="author" content="Jaime Villanueva" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta
+      name="google-site-verification"
+      content="AuMlxg6HJG3Rwtp1H81O3OmPVW4WaI5jrk1X4Onm0hU"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={makeTitle}
+      description="Un portfolio web desarrollado con las últimas tecnologías por Jaime Villanueva Alcon."
+      canonical={canonicalURL}
+      twitter={{
+        creator: "@jaimevillalcon_1997",
+        site: "@jaimevillalcon_1997",
+        card: "summary_large_image",
+      }}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: "website",
+          title: `Jaime Digital Studio`,
+          image: resolvedImageWithDomain,
+        },
+        image: {
+          alt: "Jaime Digital Studio",
+        },
+        optional: {
+          description: `Un portfolio web desarrollado con las últimas tecnologías por Jaime Villanueva Alcon.`,
+        },
+      }}
+    />
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-S9TKKTL84G"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-S9TKKTL84G");
+    </script>
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <Glow client:only />
+    <slot />
+
+    <style is:global>
+      * {
+      }
+      img {
+        content-visibility: auto;
+      }
+      body {
+        cursor: url("/cursor.png"), auto;
+        font-family: "Poppins", sans-serif;
+        background: #0a0a0a;
+        background-size: 22px 22px;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: rgba(20, 20, 20);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: #5b5b5b;
+      }
+    </style>
+    <script src="../utils/aos.js"></script>
+  </body>
+</html>
